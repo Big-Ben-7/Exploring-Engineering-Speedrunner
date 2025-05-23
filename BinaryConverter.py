@@ -58,7 +58,11 @@ while True:
         for i in range(len(n)):
             output = f"{chr(ord('a') + i)}. {n[i]}: "
             digits = []
-            BtoD(n[i])
+            try:
+                int(n[i])
+                BtoD(n[i])
+            except:
+                output += "Invalid Input"
         continue
     else:
         continue
