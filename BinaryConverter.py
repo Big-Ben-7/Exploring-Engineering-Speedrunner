@@ -42,9 +42,12 @@ print()
 print("Benny's Ultimate Decimal/Binary Converter")
 while True:
     print()
-    cat = input("[D]ecimal or [B]inary Result: ")
+    cat = input("[D]ecimal or [B]inary Result: ").replace(" ", "")
     if cat.lower() == "b" or cat.lower() == "binary":
-        n = input("Decimal Number(s): ").replace(" ", "").split(",")
+        n = input("Decimal Number(s): ").replace(" ", "")
+        if(n == ""):
+            continue
+        n = n.split(",")
         for i in range(len(n)):
             output = f"{chr(ord('a') + i)}. {n[i]}: "
             digits = []
@@ -54,7 +57,10 @@ while True:
                 print(output + "Invalid Input")
         continue
     elif cat.lower() == "d" or cat.lower() == "decimal":
-        n = input("Binary Number(s): ").replace(" ", "").split(",")
+        n = input("Binary Number(s): ").replace(" ", "")
+        if(n == ""):
+            continue
+        n = n.split(",")
         for i in range(len(n)):
             output = f"{chr(ord('a') + i)}. {n[i]}: "
             digits = []
