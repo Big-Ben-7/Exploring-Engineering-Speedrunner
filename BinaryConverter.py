@@ -51,7 +51,7 @@ while True:
             try:
                 DtoB(int(n[i]))
             except:
-                output += "Invalid Input"
+                print(output + "Invalid Input")
         continue
     elif cat.lower() == "d" or cat.lower() == "decimal":
         n = input("Binary Number(s): ").replace(" ", "").split(",")
@@ -62,7 +62,7 @@ while True:
                 int(n[i])
                 BtoD(n[i])
             except:
-                output += "Invalid Input"
+                print(output + "Invalid Input")
         continue
     else:
         continue
