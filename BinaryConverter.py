@@ -29,12 +29,7 @@ def BtoD(string):
     for i in range(len(string)):
         digit = int(string[i]) * 2 ** i
         sol += digit
-        if i == 0:
-            output += f"{string[i]}x2^{i} = {digit} (LSB), "
-        elif i == len(string) - 1:
-            output += f"{string[i]}x2^{i} = {digit} (MSB), "
-        else:
-            output += f"{string[i]}x2^{i} = {digit}, "
+        output += f"{string[i]}x2^{i} = {digit}, "
         digits.append(digit)
     output += "Result = "
     for i in range(len(digits)):
@@ -43,8 +38,8 @@ def BtoD(string):
             break
         output += f"{digits[i]}+"
     print(output)
-
-print("Welcomt to the Ultimate Decimal/Binary Converter!")
+print()
+print("Benny's Ultimate Decimal/Binary Converter")
 while True:
     print()
     cat = input("[D]ecimal or [B]inary Result: ")
@@ -53,7 +48,10 @@ while True:
         for i in range(len(n)):
             output = f"{chr(ord('a') + i)}. {n[i]}: "
             digits = []
-            DtoB(int(n[i]))
+            try:
+                DtoB(int(n[i]))
+            except:
+                output += "Invalid Input"
         continue
     elif cat.lower() == "d" or cat.lower() == "decimal":
         n = input("Binary Number(s): ").replace(" ", "").split(",")
