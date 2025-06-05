@@ -42,10 +42,15 @@ while True:
     else: continue
 
     print()
+    position = "centered"
     shape2 = input("Second Shape: ").replace(" ", "").lower()
     if shape2 == "c" or shape2 == "circle":
         r2 = float(input("Radius: ").replace(" ", ""))
         p2 = float(input("Period: ").replace(" ", ""))
+        pos = input("Roll centered, outside, or inside: ")
+        if pos == "centered" or pos == "c": position = "centered"
+        elif pos == "outside" or pos == "o": position = "outside"
+        elif pos == "inside" or pos == "i": position = "inside"
         def Shape2Graph(t):
             return r2 * cos(tau / p2 * t), r2 * sin(tau / p2 * t) 
     elif shape2 == "e" or shape2 == "ellipse":
@@ -96,8 +101,18 @@ shapeTurtle.color("blue")
 shapeTurtle.speed(0)
 shapeTurtle.hideturtle()
 
+def ShapeCenter(t):
+    if position == "centered":
+        return Shape1Graph(t)
+    elif position == "outside":
+        angle = atan2(Shape1Graph(i))
+        return tuple(map(sum, zip(Shape1Graph(t), (r2 * cos(angle), r2 * sin(angle)))))
+    elif position == "inside":
+        angle = atan2(Shape1Graph(i))
+        return tuple(map(sum, zip(Shape1Graph(t), (-r2 * cos(angle), -r2 * sin(angle)))))
+
 def Graph(t, i):
-    return tuple(map(sum, zip(Shape1Graph(t), Shape2Graph(i))))
+    return tuple(map(sum, zip(ShapeCenter(t), Shape2Graph(i))))
 
 t = 0
 graphTurtle.penup()
@@ -106,7 +121,7 @@ graphTurtle.pendown()
 while t < lcm(Fraction(p1).numerator, Fraction(p2).numerator) / gcd(Fraction(p1).denominator, Fraction(p2).denominator):
     shapeTurtle.clear()
     shapeTurtle.penup()
-    shapeTurtle.goto(Shape1Graph(t))
+    shapeTurtle.goto(ShapeCenter(t))
     shapeTurtle.pendown()
     shapeTurtle.dot(5)
     shapeTurtle.goto(Graph(t, t))
