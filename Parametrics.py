@@ -105,10 +105,10 @@ def ShapeCenter(t):
     if position == "centered":
         return Shape1Graph(t)
     elif position == "outside":
-        angle = atan2(Shape1Graph(i))
+        angle = atan2(Shape1Graph(t))
         return tuple(map(sum, zip(Shape1Graph(t), (r2 * cos(angle), r2 * sin(angle)))))
     elif position == "inside":
-        angle = atan2(Shape1Graph(i))
+        angle = atan2(Shape1Graph(t))
         return tuple(map(sum, zip(Shape1Graph(t), (-r2 * cos(angle), -r2 * sin(angle)))))
 
 def Graph(t, i):
